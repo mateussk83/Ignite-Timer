@@ -30,7 +30,6 @@ interface CyclesContextProviderProps {
 // mantemos no contexto somente coisas que nao vao mudar se a gente trocar a biblioteca ou algo assim
 export const CyclesContext = createContext({} as CyclesContextType)
 
-
 //children é na vdd todo o conteudo que passamos dentro da tag la no app tem a tag router entre o cyclesContextProvider entao temos que colocar children aqui no codigo pra mostrar onde vai ficar
 export function CyclesContextProvider({ children }: CyclesContextProviderProps) {
   // useReducer tem dois parametros o primeiro é uma função e o segundo é o valor inicial da variavel 
@@ -54,6 +53,11 @@ export function CyclesContextProvider({ children }: CyclesContextProviderProps) 
       }
     }
   )
+  useEffect(() => {
+    
+  }, []);
+
+
   const { cycles, activeCycleId } = cyclesState
   // aqui ele diz que vai em cycles e procurar o cycle que tenho o id igual ao activeCycleId
   const activeCycle = cycles.find((cycle) => cycle.id == activeCycleId)
