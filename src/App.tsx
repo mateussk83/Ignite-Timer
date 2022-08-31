@@ -10,7 +10,7 @@ import { useEffect } from 'react'
 // Global Style é os css que foram criados la no global.ts
 export function App() {
   useEffect(() => {
-    localStorage.setItem('@ignite-timer:cycles-state-1.0.0', JSON.stringify({cycles:[], activeCycleId:null}))
+    // localStorage.setItem('@ignite-timer:cycles-state-1.0.0', JSON.stringify({cycles:[], activeCycleId:null}))
   }, [])
   
   return (
