@@ -38,10 +38,11 @@ export function CyclesContextProvider({ children }: CyclesContextProviderProps) 
   // a gente coloca o nome dispach quando queremos falar que uma ação vai disparar algo
   // neste caso estamos pegando esta primeira função la do reducers cycles.ts
   // o use Reducer pode receber uma função como 3 parametro ele é disparado quando for iniciar a pagina pra pegar dados de algum outro lugar
-
-  setTimeout(() => {
-    
-  }, 5000)
+console.log(localStorage.getItem('@ignite-timer:cycles-state-1.0.0'))
+if (localStorage.getItem('@ignite-timer:cycles-state-1.0.0') == null) {
+  const stateJSON = JSON.stringify({cycles: [], activeCycleId: null})
+  localStorage.setItem('@ignite-timer:cycles-state-1.0.0', stateJSON)
+}
   const [cyclesState, dispatch] = useReducer(cyclesReducer,
     {
       // no ultimo parametro do useReducer defini o valor inicial da variavel
@@ -57,7 +58,6 @@ export function CyclesContextProvider({ children }: CyclesContextProviderProps) 
       }
     }
   )
-console.log(cyclesState)
   const { cycles, activeCycleId } = cyclesState
   // aqui ele diz que vai em cycles e procurar o cycle que tenho o id igual ao activeCycleId
   const activeCycle = cycles.find((cycle) => cycle.id == activeCycleId)
@@ -76,12 +76,7 @@ console.log(cyclesState)
   })
 
 
-  useEffect(() => {
-    const stateJSON = JSON.stringify(cyclesState)
-
-    localStorage.setItem('@ignite-timer:cycles-state-1.0.0', stateJSON)
-  }, [cyclesState])
-
+  
 
   function markCurrentCycleAsFinished() {
     dispatch(MarkCurrentCycleAsFinishedAction())
@@ -94,7 +89,7 @@ console.log(cyclesState)
 
 
   
-
+  
   // NewCycleFormData -> é a interface que defini a tipagem do data
   function createNewCycle(data: CreateCycleData) {
     // newCycle: Cycle -> define a tipagem do newCycle com o interface Cycle
