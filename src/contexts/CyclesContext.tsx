@@ -39,6 +39,9 @@ export function CyclesContextProvider({ children }: CyclesContextProviderProps) 
   // neste caso estamos pegando esta primeira função la do reducers cycles.ts
   // o use Reducer pode receber uma função como 3 parametro ele é disparado quando for iniciar a pagina pra pegar dados de algum outro lugar
 
+  setTimeout(() => {
+    
+  }, 5000)
   const [cyclesState, dispatch] = useReducer(cyclesReducer,
     {
       // no ultimo parametro do useReducer defini o valor inicial da variavel
@@ -46,6 +49,7 @@ export function CyclesContextProvider({ children }: CyclesContextProviderProps) 
       activeCycleId: null,
     },
     () => {
+      
       const storedStateAsJSON = localStorage.getItem('@ignite-timer:cycles-state-1.0.0')
 
       if (storedStateAsJSON) {
@@ -53,11 +57,7 @@ export function CyclesContextProvider({ children }: CyclesContextProviderProps) 
       }
     }
   )
-  useEffect(() => {
-    
-  }, []);
-
-
+console.log(cyclesState)
   const { cycles, activeCycleId } = cyclesState
   // aqui ele diz que vai em cycles e procurar o cycle que tenho o id igual ao activeCycleId
   const activeCycle = cycles.find((cycle) => cycle.id == activeCycleId)
